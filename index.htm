@@ -14,9 +14,9 @@
         <div class="container border border-2 mt-3 p-3 rounded-3 bg-body-secondary">
             <h2 class="text-center">Todo App</h2>
             <div class="row">
-                <input class="input-group-text col-5 mx-2" type="text">
-                <input class="input-group-text col-5 mx-2" type="date">
-                <button class="btn btn-warning col-1 mx-3">Add</button>
+                <input id="task-input" class="input-group-text col-5 mx-2" type="text">
+                <input id="task-date" class="input-group-text col-5 mx-2" type="date">
+                <button id="add-button" class="btn btn-warning col-1 mx-3">Add</button>
 
                 <div id="buttons" class="d-flex justify-content-between mt-4">
                     <div> <button class="btn btn-warning">All</button>
@@ -28,6 +28,8 @@
                 </div>
             </div>
     </section>
+
+    <div class="container text-center lead mt-3 text-light" id="alert-msg"></div>
 
     <section id="table">
         <div class="container mt-3 border border-2 rounded-3">
@@ -41,23 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                  
                 </tbody>
             </table>
         </div>
