@@ -1,21 +1,35 @@
 const taskInput = document.getElementById('task-input');
 const dateInput = document.getElementById('task-date');
-const addbutton = document.getElementById('add-button');
+const addButton = document.getElementById('add-button');
 const alertMsg = document.getElementById('alert-msg');
+const allButton = document.getElementById('all-btn');
+const pendingButton = document.getElementById('pending-btn');
+const completedButton = document.getElementById('completed-btn');
+const deleteAllButton = document.getElementById('delete-all-btn');
 
-const todos = [];
+const generateId = () => {
+    return Math.round(Math.random() * Math.random() * Math.pow(10, 15)).toString();
+}
+generateId()
+
+
+
+
+const todos = JSON.parse(localStorage.getItem('todos')) || [];
+console.log(todos);
+
 
 const showAlert = (message, type) => {
-    alertMsg.innerHTML =''
+    alertMsg.innerHTML = ''
     const alert = document.createElement('p');
     alert.innerText = message;
-if(type === 'error'){
-    alert.classList.add('bg-danger')
-    alert.classList.add('rounded-2')
-} else{
-    alert.classList.add('bg-success')
-    alert.classList.add('rounded-2')
-}   
+    if (type === 'error') {
+        alert.classList.add('bg-danger')
+        alert.classList.add('rounded-2')
+    } else {
+        alert.classList.add('bg-success')
+        alert.classList.add('rounded-2')
+    }
     alertMsg.append(alert)
     setTimeout(() => {
         alert.style.display = 'none';
@@ -23,16 +37,24 @@ if(type === 'error'){
 
 }
 
+const saveToLocalStorage = () => {
+localStorage.setItem('todos', JSON.stringify(todos));
+
+};
+
 const addHandler = () => {
     const task = taskInput.value;
     const date = dateInput.value;
     const todo = {
+        id: generateId(),
+        completed: false,
         task: task,
         data: date,
-        completed: false
+
     };
     if (task) {
-        todos.push(todo)
+        todos.push(todo);
+        saveToLocalStorage();   
         taskInput.value = '';
         dateInput.value = '';
         console.log(todos);
@@ -42,6 +64,6 @@ const addHandler = () => {
     }
 
 }
+addButton.addEventListener('click', addHandler);
 
-addbutton.addEventListener('click', addHandler);
-showAlert('')
+
