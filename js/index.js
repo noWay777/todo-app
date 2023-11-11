@@ -18,6 +18,9 @@ generateId()
 const todos = JSON.parse(localStorage.getItem('todos')) || [];
 console.log(todos);
 
+const saveToLocalStorage = () => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+
 
 const showAlert = (message, type) => {
     alertMsg.innerHTML = ''
@@ -37,8 +40,7 @@ const showAlert = (message, type) => {
 
 }
 
-const saveToLocalStorage = () => {
-localStorage.setItem('todos', JSON.stringify(todos));
+
 
 };
 
