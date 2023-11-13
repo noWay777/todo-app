@@ -58,13 +58,12 @@ const displayTodos = () => {
         <td>
         <button class = 'btn btn-warning mx-1'>edit</button>
         <button class = 'btn btn-success mx-1'>do</button>
-        <button class = 'btn btn-danger mx-1'>delete</button>
+        <button onclick ='deleteHandler("${todo.id}")' class = 'btn btn-danger mx-1'>delete</button>
         </td>
         </tr>
         `
     })
 }
-displayTodos();
 
 
 const addHandler = () => {
@@ -98,10 +97,20 @@ const deleteAllHandler = () => {
         displayTodos();
         showAlert('All todos has been deleted successfully', 'success');
 
-    }else{
+    } else {
         showAlert('No todos to clear!', 'error')
     }
 
+};
+
+const deleteHandler = (id) => {
+    const newTodos = todos.filter((todo) => {
+        return todo.id !== id
+    })
+    todos = newTodos;
+    saveToLocalStorage();
+    displayTodos();
+    showAlert('Todo has been deleted', 'success')
 };
 
 
