@@ -2,7 +2,7 @@ const taskInput = document.getElementById('task-input');
 const dateInput = document.getElementById('task-date');
 const addButton = document.getElementById('add-button');
 const alertMsg = document.getElementById('alert-msg');
-const todosBody = document.querySelector('tbody')
+const todosBody = document.querySelector('tbody');
 const allButton = document.getElementById('all-btn');
 const pendingButton = document.getElementById('pending-btn');
 const completedButton = document.getElementById('completed-btn');
@@ -11,7 +11,7 @@ const deleteAllButton = document.getElementById('delete-all-btn');
 const generateId = () => {
     return Math.round(Math.random() * Math.random() * Math.pow(10, 15)).toString();
 }
-generateId()
+generateId();
 
 
 
@@ -57,13 +57,13 @@ const displayTodos = () => {
         <td>${todo.completed ? 'Completed' : 'Pending'}</td>
         <td>
         <button class = 'btn btn-warning mx-1'>edit</button>
-        <button class = 'btn btn-success mx-1'>do</button>
+        <button onclick = 'toggleHandler("${todo.id}")' class = 'btn btn-success mx-1'>${todo.completed ? 'Undo' : 'Do'}</button>
         <button onclick ='deleteHandler("${todo.id}")' class = 'btn btn-danger mx-1'>delete</button>
         </td>
         </tr>
         `
     })
-}
+};
 
 
 const addHandler = () => {
@@ -88,7 +88,7 @@ const addHandler = () => {
         showAlert('Please enter todo', 'error')
     }
 
-}
+};
 
 const deleteAllHandler = () => {
     if (todos.length) {
@@ -111,6 +111,25 @@ const deleteHandler = (id) => {
     saveToLocalStorage();
     displayTodos();
     showAlert('Todo has been deleted', 'success')
+};
+
+
+const toggleHandler = (id) => {
+    const newTodos = todos.map(todo => {
+        if (todo.id === id) {
+            return {
+                ...todo,
+                completed: !todo.completed,
+            };
+        } else {
+            return todo;
+        }
+    })
+    todos = newTodos;
+
+    saveToLocalStorage();
+    displayTodos();
+    showAlert('Status has been changed!', 'Success');
 };
 
 
