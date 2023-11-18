@@ -17,11 +17,12 @@
                 <input id="task-input" class="input-group-text col-5 mx-2" type="text">
                 <input id="task-date" class="input-group-text col-5 mx-2" type="date">
                 <button id="add-button" class="btn btn-warning col-1 mx-3">Add</button>
+                <button id="edit-btn" class="btn btn-warning col-1 mx-3 d-none">Edit</button>
 
                 <div id="buttons" class="d-flex justify-content-between mt-4">
-                    <div> <button id="all-btn" class="btn btn-warning">All</button>
-                        <button id="pending-btn" class="btn btn-warning">Pending</button>
-                        <button id="completed-btn" class="btn btn-warning">Completed</button>
+                    <div> <button class="btn btn-warning filter-todos" data-filter="all">All</button>
+                        <button class="btn btn-warning filter-todos" data-filter="pending">Pending</button>
+                        <button class="btn btn-warning filter-todos" data-filter="completed">Completed</button>
                     </div>
                     <button id="delete-all-btn" class="btn btn-danger mx-5">Delete All</button>
 
@@ -34,7 +35,7 @@
     <section id="table">
         <div class="container mt-3 border border-2 rounded-3">
             <table class="table table-striped ">
-                <thead >
+                <thead>
                     <tr>
                         <th scope="col">Task</th>
                         <th scope="col">Date</th>
@@ -43,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  
+
                 </tbody>
             </table>
         </div>
